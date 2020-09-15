@@ -1,8 +1,10 @@
 from flask import render_template
 
 from app import app
+from app.forms import MergeForm
 
 
 @app.route("/")
 def index():
-    return render_template("home.html")
+    form = MergeForm()
+    return render_template("index.html", form=form)

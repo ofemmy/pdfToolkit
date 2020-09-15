@@ -10,7 +10,7 @@
     {#SIDENAV STARTS#}
     <nav class="flex-grow-0 bg-gray-900 w-40 min-h-full hidden md:block">
         <ul class="text-white uppercase flex flex-col justify-center items-center mt-24">
-            <li class="hover:bg-secondary w-full h-24 flex justify-center items-center border-b border-gray-500">
+            <li class="hover:bg-secondary w-full h-24 flex justify-center items-center border-b border-gray-100">
                 <a href="#" class="block w-full flex flex-col justify-center items-center">
                     <svg class="w-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                          stroke="currentColor">
@@ -20,7 +20,7 @@
                     <span class="text-center">Merge pdf</span>
                 </a>
             </li>
-            <li class="hover:bg-secondary w-full h-24 flex justify-center items-center border-b border-gray-500">
+            <li class="hover:bg-secondary w-full h-24 flex justify-center items-center border-b border-gray-100">
                 <a href="#" class="block w-full flex flex-col justify-center items-center">
                     <svg class="w-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                          stroke="currentColor">
@@ -66,12 +66,12 @@
                 <li class=" hover:text-secondary py-2"><a href="#">Encrypt</a></li>
             </ul>
         </header>
-        <main class="px-6 py-10">
+        <main class="px-6 py-10 w-1/2 shadow-lg mx-auto mt-16 bg-white">
             {% block content %}{% endblock %}
         </main>
     </div>
 </div>
-<footer class="bg-gray-800 h-24 text-white">
+<footer class="bg-gray-800 h-16 text-white">
     FOOTER HERE
 </footer>
 

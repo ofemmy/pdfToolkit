@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+    <h3 class="font-semibold leading-tight text-center uppercase text-xl">Merge PDF</h3>
+    <form action="" enctype="multipart/form-data" class="mt-5">
+        {{ form.csrf_token }}
+        <div id="field-wrapper">
+            {% for field in form.documents %}
+                <div class="mb-4 ">
+                    {{ field.file(class_="opacity-0 overflow-hidden z-neg absolute form-file-input",accept=".pdf",**{'id':'customFile'+(loop.index|string)}) }}
+                    <label for="customFile{{ loop.index }}"
+                           class="text-sm md:text-base inline-block border border-gray-400 w-full flex justify-between overflow-hidden rounded">
+                        <span class="px-3 py-2" id="label">Choose file...</span>
+                        <span class="px-3 py-2 bg-gray-300">Browse</span>
+                    </label>
+
+                </div>
+            {% endfor %}
+        </div>
+        <button class="text-blue-600 block mb-6 p-2 hover:text-blue-700" id="addFiles">
+            <svg class="w-4 inline -mt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                      clip-rule="evenodd"></path>
+            </svg>
+            More files
+        </button>
+        <button type="submit" class="block bg-blue-600  font-bold text-white py-2 px-3 rounded hover:bg-blue-500">Merge
+            Files
+        </button>
+    </form>
+    <template>
+        <div class="mb-4">
+            <input type="file" class="opacity-0 overflow-hidden z-neg absolute form-file-input" accept=".pdf">
+            <label
+                    class="text-sm md:text-base inline-block border border-gray-400 w-full flex justify-between overflow-hidden rounded">
+                <span class="px-3 py-2" id="label">Choose file...</span>
+                <span class="px-3 py-2 bg-gray-300">Browse</span>
+            </label>
+
+        </div>
+    </template>
+{% endblock %}
