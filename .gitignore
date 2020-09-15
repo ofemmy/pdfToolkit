@@ -363,4 +363,7 @@ fabric.properties
 pyvenv.cfg
 pip-selfcheck.json
 
+./merged
+./uploads
+./split
 # End of https://www.toptal.com/developers/gitignore/api/flask,node,venv,pycharm

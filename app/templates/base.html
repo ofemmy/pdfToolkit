@@ -10,7 +10,7 @@
     {#SIDENAV STARTS#}
     <nav class="flex-grow-0 bg-gray-900 w-40 min-h-full hidden md:block">
         <ul class="text-white uppercase flex flex-col justify-center items-center mt-24">
-            <li class="hover:bg-secondary w-full h-24 flex justify-center items-center border-b border-gray-100">
+            <li class="hover:bg-gray-800 w-full h-24 flex justify-center items-center border-b border-gray-100 {{ 'bg-secondary hover:bg-secDark' if page_title=='merged' }}">
                 <a href="#" class="block w-full flex flex-col justify-center items-center">
                     <svg class="w-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                          stroke="currentColor">
@@ -20,7 +20,7 @@
                     <span class="text-center">Merge pdf</span>
                 </a>
             </li>
-            <li class="hover:bg-secondary w-full h-24 flex justify-center items-center border-b border-gray-100">
+            <li class="hover:bg-gray-800 w-full h-24 flex justify-center items-center border-b border-gray-100 {{ 'bg-secondary hover:bg-secDark' if page_title=='split' }}">
                 <a href="#" class="block w-full flex flex-col justify-center items-center">
                     <svg class="w-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                          stroke="currentColor">
@@ -30,7 +30,7 @@
                     <span>Split pdf</span>
                 </a>
             </li>
-            <li class="hover:bg-secondary w-full h-24 flex justify-center items-center">
+            <li class="hover:bg-gray-800 w-full h-24 flex justify-center items-center {{ 'bg-secondary hover:bg-secDark' if page_title=='encrypt' }}">
                 <a href="#" class="block w-full flex flex-col justify-center items-center">
 
                     <svg class="w-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -49,6 +49,7 @@
             <div class="flex justify-between items-center">
                 <div class="text-lg font-bold">
                     <a href="#">PDF-toolkit</a>
+                    <a href="#">{{ page_title }}</a>
                 </div>
                 <div id="hamburger">
                     <svg class="w-6 cursor-pointer md:hidden" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -60,7 +61,8 @@
                 </div>
             </div>
             <ul class="hidden md:hidden mt-2" id="menu">
-                <li class=" hover:text-secondary py-2"><a href="#">Home</a></li>
+                <li class=" hover:text-secondary py-2"><a href="#">Home</a>
+                </li>
                 <li class=" hover:text-secondary py-2"><a href="#">Split</a></li>
                 <li class=" hover:text-secondary py-2"><a href="#">Merge</a></li>
                 <li class=" hover:text-secondary py-2"><a href="#">Encrypt</a></li>
