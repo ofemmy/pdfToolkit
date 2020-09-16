@@ -1,5 +1,5 @@
-from flask import render_template
-from werkzeug.utils import secure_filename
+from flask import render_template, url_for
+from werkzeug.utils import secure_filename, redirect
 
 from app import app
 from app.forms import SplitForm
@@ -16,5 +16,5 @@ def split():
         if is_done:
             clean_up_uploads()
             print("done")
-            # return redirect(url_for("output", mode="split"))
+            return redirect(url_for("output", mode="split"))
     return render_template("split.html", form=form, page_title="split")
