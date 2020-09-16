@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+    <h3 class="font-semibold leading-tight text-center uppercase text-xl">Split PDF</h3>
+    <form action="{{ url_for("split") }}" method="post" enctype="multipart/form-data" class="mt-5" novalidate>
+        {{ form.csrf_token }}
+        <div class="mb-4">
+            {{ form.pdf(class_="opacity-0 overflow-hidden z-neg absolute form-file-input",accept=".pdf",**{'id':'customFile'}) }}
+            <label for="customFile"
+                   class="text-sm md:text-base inline-block border border-gray-400 w-full flex justify-between overflow-hidden rounded">
+                <span class="px-3 py-2" id="label">Choose file...</span>
+                <span class="px-3 py-2 bg-gray-300">Browse</span>
+            </label>
+            {% if form.pdf.errors %}
+                {% for error in form.pdf.errors %}
+                    <div class="text-red-600 text-sm">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <button type="submit"
+                class="block bg-blue-600  font-bold text-white py-2 px-3 rounded bg-secondary hover:bg-secDark">Split
+            Pdf
+        </button>
+    </form>
+{% endblock %}

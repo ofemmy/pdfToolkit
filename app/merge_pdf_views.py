@@ -6,7 +6,7 @@ from app.utils import verify_filenames, merge_pdfs
 
 
 @app.route("/", methods=["GET", "POST"])
-def index():
+def merge():
     form = MergeForm()
     if form.validate_on_submit():
         uploaded_files = [file["file"] for file in form.documents.data if file["file"]]

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     <h3 class="font-semibold leading-tight text-center uppercase text-xl">Merge PDF</h3>
-    <form action="" enctype="multipart/form-data" class="mt-5" method="post">
+    <form action="{{ url_for("merge") }}" enctype="multipart/form-data" class="mt-5" method="post">
         {{ form.csrf_token }}
         <div id="field-wrapper">
             {% for field in form.documents %}

@@ -1,5 +1,5 @@
 import os
-import zipfile
+import shutil
 
 from PyPDF2 import PdfFileReader, PdfFileWriter
 from flask import current_app
@@ -36,31 +36,30 @@ def split_pdf(pdf_file):
             pdf_writer = PdfFileWriter()
             pdf_writer.addPage(pdf.getPage(page))
 
-            out = f"{pdf_file.filename.split('.')[0]}-{page}.pdf"
-            with open(os.path.join(current_app.config["SPLIT_FILES"], out), 'wb') as output_file:
+            split_pdf_name = f"{pdf_file.filename.split('.')[0]}-{page}.pdf"
+            with open(os.path.join(current_app.config["UPLOAD_PATH"], split_pdf_name), 'wb') as output_file:
                 pdf_writer.write(output_file)
-        zip_files()
-        return True
+        return zip_files()
     except Exception as e:
         print(e)
         return False
 
 
 def zip_files():
-    split_files_dir = current_app.config["SPLIT_FILES"]
-    files_to_zip = os.listdir(split_files_dir)
-    destination = os.path.join(split_files_dir, "output.zip")
+    split_files_dir = current_app.config["UPLOAD_PATH"]
+    out_dir = current_app.config["SPLIT_FILES"]
+    destination = os.path.join(out_dir, "output")
     try:
-        with zipfile.ZipFile(destination, "w", compression=zipfile.ZIP_DEFLATED) as my_zip:
-            for file in files_to_zip:
-                my_zip.write(os.path.join(split_files_dir, file))
+        shutil.make_archive(base_name=destination, format="zip", root_dir=split_files_dir)
+        return True
     except Exception as e:
         print(e)
         raise e
 
 
-def clean_up():
-    files = os.listdir(current_app.config["SPLIT_FILES"])
+def clean_up_uploads():
+    upload_dir=current_app.config["UPLOAD_PATH"]
+    files = os.listdir(upload_dir)
     for f in [file for file in files if file.endswith(".pdf")]:
-        f_path = os.path.join(current_app.config["SPLIT_FILES"], f)
+        f_path = os.path.join(upload_dir, f)
         os.remove(f_path)
